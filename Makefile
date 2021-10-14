@@ -1,4 +1,13 @@
 #!/usr/bin/make
 
-hdl:
-	reveal-md hdl.md --theme moon --static build/hdl
+BUILD=build
+
+.PHONY: html clean
+
+html: $(BUILD)/hdl.html
+
+$(BUILD)/hdl.html: hdl.md
+	reveal-md --theme moon --static $(BUILD) $<
+
+clean:
+	rm -fr $(BUILD)
