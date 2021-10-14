@@ -33,14 +33,16 @@ Rodrigo Alejandro Melo
 
 #### VHDL vs Verilog
 
-* VHDL is strongly typed, CasE InSEnSiTiVe and supports libraries.
-* Verilog is weakly typed, case sensitive and doesn’t support libraries.
+* VHDL is strongly typed, CasE InSEnSiTiVe and supports libraries. Based on ADA.
+* Verilog is weakly typed, case sensitive and doesn’t support libraries. C-like syntax
 * You can achieve the same with both of them.
 * Verilog is more concise but allows you to write wrong code.
 
 ----
 
-#### VHDL'93 - Verilog'01
+#### EDA tools support
+
+The most widely supported standards are VHDL 93 and Verilog 2001.
 
 ![Xcell27](images/hdl/xcell27.png)
 
@@ -89,3 +91,33 @@ Rodrigo Alejandro Melo
 ![ASIC verification languages](images/hdl/wrg-asic-verif-languages.png)
 
 **Source:** [The 2020 Wilson Research Group Functional Verification Study](https://blogs.sw.siemens.com/verificationhorizons/2021/01/20/part-10-the-2020-wilson-research-group-functional-verification-study/) (SIEMENS)
+
+---
+
+### Alternatives
+
+----
+
+#### High Level Synthesis
+
+* AKA algorithmic/behavioral synthesis.
+* Subset of C (or variants) + directives (vendor-specific).
+* The result is an extremely vendor-specific RTL.
+* Useful for architecture exploration of algorithms.
+* Can't be used to create processors or controllers, neither to deal with multiple clock domains.
+
+----
+
+#### Others HDLs
+
+* Python based: (n)Migen, MyHDL
+* Scala based: Chisel, SpinalHDL
+* Haskell based: Clash, Bluespec
+* Verilog based: TL-Verilog, Silice
+* And more...
+
+---
+
+### Recommendation
+
+If you want to design for ASICs/FPGAs, you should know [System]Verilog and/or VHDL.
