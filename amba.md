@@ -114,3 +114,16 @@ Source | HCTRLCHK2         | Parity (for safety)
 ---
 
 ## AXI
+
+---
+<!-- ###################################################################### -->
+# Questions?
+<!-- .slide: data-background="#1F618D" -->
+<!-- ###################################################################### -->
+
+|   |   |
+|---|---|
+| ![GitHub icon](images/icons/github.png) | [rodrigomelo9](https://github.com/rodrigomelo9) |
+| ![Twitter icon](images/icons/twitter.png) | [rodrigomelo9ok](https://twitter.com/rodrigomelo9ok) |
+| ![LinkedIn icon](images/icons/linkedin.png) | [rodrigoalejandromelo](https://www.linkedin.com/in/rodrigoalejandromelo/) |
+|   |   |

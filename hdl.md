@@ -121,3 +121,16 @@ The most widely supported standards are VHDL 93 and Verilog 2001.
 ### Recommendation
 
 If you want to design for ASICs/FPGAs, you should know [System]Verilog and/or VHDL.
+
+---
+<!-- ###################################################################### -->
+# Questions?
+<!-- .slide: data-background="#1F618D" -->
+<!-- ###################################################################### -->
+
+|   |   |
+|---|---|
+| ![GitHub icon](images/icons/github.png) | [rodrigomelo9](https://github.com/rodrigomelo9) |
+| ![Twitter icon](images/icons/twitter.png) | [rodrigomelo9ok](https://twitter.com/rodrigomelo9ok) |
+| ![LinkedIn icon](images/icons/linkedin.png) | [rodrigoalejandromelo](https://www.linkedin.com/in/rodrigoalejandromelo/) |
+|   |   |
