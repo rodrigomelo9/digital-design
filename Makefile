@@ -4,9 +4,9 @@ BUILD=build
 
 .PHONY: html clean
 
-html: $(BUILD)/hdl.html
+html: $(BUILD)/hdl.html $(BUILD)/amba.html
 
-$(BUILD)/hdl.html: hdl.md
+$(BUILD)/%.html: %.md
 	reveal-md --theme moon --static $(BUILD) $<
 
 clean:
