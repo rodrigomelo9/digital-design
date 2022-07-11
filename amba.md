@@ -1,6 +1,7 @@
 <!-- .slide: data-background="#145A32" -->
 
-## Advanced Microcontroller Bus Architecture (AMBA)
+## Introduction to AMBA
+## APB, AHB and AXI
 
 [rodrigomelo9.github.io/digital-design](https://rodrigomelo9.github.io/digital-design/)
 
@@ -9,6 +10,13 @@ Rodrigo Alejandro Melo
 [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)
 
 ---
+
+### Advanced Microcontroller Bus Architecture
+
+AMBA is a freely available, globally adopted, open standard for the connection and management of functional blocks in a System-on-Chip (SoC).
+It facilitates right-first-time development of multiprocessor designs, with large numbers of controllers and peripherals.
+
+----
 
 ### AMBA Specs
 
@@ -21,7 +29,7 @@ Rodrigo Alejandro Melo
 <!-- .element: style="font-size: 0.5em !important;" -->
 
 > **WARNING:** the first APB and ASB are obsolete (shouldn't be used in new designs)
-<!-- .element: style="font-size: 0.5em !important;" -->
+<!-- .element: style="font-size: 0.4em !important;" -->
 
 Advanced eXtensible Interface                | Advanced High-performance Bus    | Advanced System Bus | Advanced Peripherals Bus
 ---                                          |---                               |---                  | ---
@@ -30,11 +38,25 @@ Lite: Control/Status registers               | AHB-Lite: for single masters     
 Stream: High speeds unidirectional transfers |                                  |                     |
 <!-- .element: style="font-size: 0.35em !important;" -->
 
+----
+
+### Vocabulary
+
+Term        | Description
+---         |---
+Interface   | APB, AHB, AXI (a core could have multiple)
+Channel     | Independent collection of AXI signals associated to a VALID
+Bus         | Multi-bit signal (not an interface, not a channel)
+Transfer    | (aka beat) single clock cycle, qualified by a VALID/READY handshake
+Transaction | Complete communication, with one or more transfers
+Burst       | Transaction with more than one transfer
+<!-- .element: style="font-size: 0.5em !important;" -->
+
 ---
 
 ### APB signals
 
-| APB2         | APB3         | APB4           | APB5           | Comment
+| APB2         | APB3         | APB4           | APB5           | Description
 |---           |---           |---             |---             |---
 | PCLK         | PCLK         | PCLK           | PCLK           | Clock
 | PRESETn      | PRESETn      | PRESETn        | PRESETn        | Reset (active low)
@@ -54,7 +76,7 @@ Stream: High speeds unidirectional transfers |                                  
 
 ### APB5 additional signals
 
-| APB5              | Comment
+| APB5              | Description
 |---                |---
 | PWAKEUP           | Wake-up
 | PAUSER[up-to-128] | User request attribute
@@ -68,7 +90,7 @@ Stream: High speeds unidirectional transfers |                                  
 
 ### AHB signals
 
-| AHB2          | AHB-Lite               | AHB5          | Comment
+| AHB2          | AHB-Lite               | AHB5          | Description
 |---            |---                     |---            |---
 | HCLK          | HCLK                   | HCLK          | Clock
 | HRESETn       | HRESETn                | HRESETn       | Reset (active low)
@@ -97,7 +119,7 @@ Stream: High speeds unidirectional transfers |                                  
 
 ### AHB5 additional signals
 
-| AHB5              | Comment
+| AHB5              | Description
 |---                |---
 | HNONSEC           | Indicates Non-secure transaction
 | HEXCL             | Exclusive Access
@@ -130,12 +152,33 @@ AWREGION[3:0] -- __NEW__ | BRESP[1:0]                 | ARREGION[3:0] -- __NEW__
 AWUSER[] -- __NEW__      | BUSER[] -- __NEW__         | ARUSER[] -- __NEW__      | __Global signals__
 AWVALID                  | BVALID                     | AWVALID                  | ACLK
 AWREADY                  | BREADY                     | AWREADY                  | ARESETn
-<!-- .element: style="font-size: 0.35em !important;" -->
+<!-- .element: style="font-size: 0.5em !important;" -->
 
 > * AXI3: AxLEN[3:0] and AxLOCK[1:0].
 > * AXI4: removed WID, added AxQOS, AxREGION and xUSER.
 > * AXI5: several signals added (not only parity)
-<!-- .element: style="font-size: 0.35em !important;" -->
+<!-- .element: style="font-size: 0.4em !important;" -->
+
+----
+
+### AXI signals description
+
+Signal   | Description
+---      |---
+AxPROT   | Protection type (un/privileged, non/secure, data/instruction access)
+WSTRB    | Write strobe, indicates valid bytes
+xRESP    | OKAY, EXOKAY (exclusive), SLVERR (Slave ERROR), DECERR (Decode ERROR)
+AxLEN    | Burst length (AxLEN + 1)
+AxSIZE   | 1, 2, 4, 8, 16, 32, 64, 128 bytes of the beat (2^AxSIZE)
+AxBURST  | FIXED, INCR, WRAP, reserved
+xLAST    | Indicates last beat in the burst
+AxLOCK   | Normal, exclusive or locked (only AXI3) access
+AxCACHE  | Indicates Bufferable, Cacheable, and Allocate attributes
+AxQOS    | Quality of Service
+AxREGION | Up to 16 regions for the address decode
+xID      | Transaction identifiers (ordering)
+xUSER    | User-defined (not recommended)
+<!-- .element: style="font-size: 0.5em !important;" -->
 
 ---
 
@@ -151,16 +194,16 @@ AWREADY                  | BREADY                     | AWREADY                 
 |                      | BRESP[1:0]                 |                          | __Global signals__
 |                      | BVALID                     |                          | ACLK
 |                      | BREADY                     |                          | ARESETn
-<!-- .element: style="font-size: 0.35em !important;" -->
+<!-- .element: style="font-size: 0.5em !important;" -->
 
-> * AXI5-lite: several signals added, for parity and more flexibility on bus width and ordering
-<!-- .element: style="font-size: 0.35em !important;" -->
+> AXI5-lite: several signals added, for parity and more flexibility on bus width and ordering
+<!-- .element: style="font-size: 0.4em !important;" -->
 
 ---
 
 ### AXI-Stream signals
 
-| AXI4-Stream  | AXI5-Stream  | Comment
+| AXI4-Stream  | AXI5-Stream  | Description
 |---           |--            |---
 | ACLK         | ACLK         | Clock
 | ARESETn      | ARESETn      | Reset (active low)
@@ -175,7 +218,7 @@ AWREADY                  | BREADY                     | AWREADY                 
 | TUSER[]      | TUSER[]      | User-defined sideband information
 |              | TWAKEUP      | Wake-up
 |              | T*CHK        | Parity (for safety)
-<!-- .element: style="font-size: 0.35em !important;" -->
+<!-- .element: style="font-size: 0.5em !important;" -->
 
 ---
 <!-- ###################################################################### -->
@@ -185,7 +228,7 @@ AWREADY                  | BREADY                     | AWREADY                 
 
 |   |   |
 |---|---|
-| ![GitHub icon](images/icons/github.png) | [rodrigomelo9](https://github.com/rodrigomelo9) |
-| ![Twitter icon](images/icons/twitter.png) | [rodrigomelo9ok](https://twitter.com/rodrigomelo9ok) |
-| ![LinkedIn icon](images/icons/linkedin.png) | [rodrigoalejandromelo](https://www.linkedin.com/in/rodrigoalejandromelo/) |
+| ![GitHub icon](images/icons/github.png)     | [rodrigomelo9](https://github.com/rodrigomelo9)                          |
+| ![Twitter icon](images/icons/twitter.png)   | [rodrigomelo9ok](https://twitter.com/rodrigomelo9ok)                     |
+| ![LinkedIn icon](images/icons/linkedin.png) | [rodrigoalejandromelo](https://www.linkedin.com/in/rodrigoalejandromelo) |
 |   |   |
