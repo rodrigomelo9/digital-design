@@ -56,21 +56,33 @@ Burst       | Transaction with more than one transfer
 
 ### APB signals
 
-| APB2         | APB3         | APB4           | APB5           | Description
-|---           |---           |---             |---             |---
-| PCLK         | PCLK         | PCLK           | PCLK           | Clock
-| PRESETn      | PRESETn      | PRESETn        | PRESETn        | Reset (active low)
-| PADDR[A-1:0] | PADDR[A-1:0] | PADDR[A-1:0]   | PADDR[A-1:0]   | Address (A is up to 32 bits)
-| PSELx        | PSELx        | PSELx          | PSELx          | S selected
-| PENABLE      | PENABLE      | PENABLE        | PENABLE        | S enabled
-| PWRITE       | PWRITE       | PWRITE         | PWRITE         | Write operation
-| PWDATA[D-1]  | PWDATA[D-1]  | PWDATA[D-1]    | PWDATA[D-1]    | Write Data. (D is 8, 16 or 32 bits)
-| PRDATA[D-1]  | PRDATA[D-1]  | PRDATA[D-1]    | PRDATA[D-1]    | Read Data (D is 8, 16 or 32 bits)
-|              | PREADY       | PREADY         | PREADY         | Indicates the completion of a transfer
-|              | PSLVERR      | PSLVERR        | PSLVERR        | Indicates an error condition
-|              |              | PPROT[2:0]     | PPROT[2:0]     | Normal, privileged, or secure protection level
-|              |              | PSTRB[D/8-1:0] | PSTRB[D/8-1:0] | Write Strobe: bytes to update during a write
+| APB2         | APB3         | APB4 / APB5    | Description
+|---           |---           |---             |---
+| PCLK         | PCLK         | PCLK           | Clock
+| PRESETn      | PRESETn      | PRESETn        | Reset (active low)
+| PADDR[A-1:0] | PADDR[A-1:0] | PADDR[A-1:0]   | Address (up to 32 bits)
+| PSELx        | PSELx        | PSELx          | Selected
+| PENABLE      | PENABLE      | PENABLE        | Enabled
+| PWRITE       | PWRITE       | PWRITE         | Write operation
+| PWDATA[D-1]  | PWDATA[D-1]  | PWDATA[D-1]    | Write Data. (8, 16 or 32 bits)
+| PRDATA[D-1]  | PRDATA[D-1]  | PRDATA[D-1]    | Read Data (8, 16 or 32 bits)
+|              | PREADY       | PREADY         | Indicates the completion of a transfer
+|              | PSLVERR      | PSLVERR        | Indicates an error condition
+|              |              | PPROT[2:0]     | Normal, privileged, or secure protection level
+|              |              | PSTRB[D/8-1:0] | Write Strobe (bytes to update during a write)
 <!-- .element: style="font-size: 0.4em !important;" -->
+
+----
+
+### APB Signals
+
+![APB signals](images/amba/apb.png)
+
+----
+
+### APB Signaling
+
+![APB Signaling](images/amba/apb-waves.png)
 
 ----
 
@@ -95,16 +107,16 @@ Burst       | Transaction with more than one transfer
 | HCLK          | HCLK                   | HCLK          | Clock
 | HRESETn       | HRESETn                | HRESETn       | Reset (active low)
 | HADDR[31:0]   | HADDR[31:0]            | HADDR[31:0]   | Address (32-bits, between 10 and 64 in AHB5)
-| HSELx         | HSELx                  | HSELx         | S selected
-| HTRANS[1:0]   | HTRANS[1:0]            | HTRANS[1:0]   | Transfer type: IDLE, BUSY, NONSEQ, SEQ
+| HSELx         | HSELx                  | HSELx         | Selected
+| HTRANS[1:0]   | HTRANS[1:0]            | HTRANS[1:0]   | Transfer type (IDLE, BUSY, NONSEQ, SEQ)
 | HWRITE        | HWRITE                 | HWRITE        | Write operation
 | HSIZE[2:0]    | HSIZE[2:0]             | HSIZE[2:0]    | Size of the transfer (2^SIZE bytes)
 | HBURST[2:0]   | HBURST[2:0]            | HBURST[2:0]   | Burst length and address increments
 | HPROT[3:0]    | HPROT[3:0]             | HPROT[2:0]    | Normal, privileged, or secure protection level
-| HWDATA[31:0]  | HWDATA[31:0]           | HWDATA[]      | WR D: 8, 16, 32, 64, 128, 256, 512, 1024 (bits)
-| HRDATA[31:0]  | HRDATA[31:0]           | HRDATA[]      | RD D: 8, 16, 32, 64, 128, 256, 512, 1024 (bits)
-|               | HWSTRB[D/8-1] -- AMBA5 | HWSTRB[D/8-1] | Write Strobe: bytes to update during a write
-| HREADY        | HREADY                 | HREADY        | Indicates that the previous transfer is complete
+| HWDATA[31:0]  | HWDATA[31:0]           | HWDATA[]      | WR (8, 16, 32, 64, 128, 256, 512, 1024 bits)
+| HRDATA[31:0]  | HRDATA[31:0]           | HRDATA[]      | RD (8, 16, 32, 64, 128, 256, 512, 1024 bits)
+|               | HWSTRB[D/8-1] -- AMBA5 | HWSTRB[D/8-1] | Write Strobe (bytes to update during a write)
+| HREADY        | HREADY                 | HREADY        | (IN) other transfers completed
 | HRESP[1:0]    | HRESP                  | HRESP         | Transfer response
 | HBUSREQx      |                        |               | Bus required
 | HLOCKx        |                        |               | Locked access required
@@ -112,7 +124,7 @@ Burst       | Transaction with more than one transfer
 | HMASTER[3:0]  |                        | HMASTER[7:0]  | Manager identifier
 | HMASTLOCK     | HMASTLOCK              | HMASTLOCK     | Current transfer is part of a locked sequence
 | HSPLITx[15:0] |                        |               | M to re-attempt a split transaction
-|               | HREADYOUT              | HREADYOUT     | A transfer has finished
+|               | HREADYOUT              | HREADYOUT     | (OUT) transfer has finished
 <!-- .element: style="font-size: 0.35em !important;" -->
 
 ----
