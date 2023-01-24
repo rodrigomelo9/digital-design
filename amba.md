@@ -1,7 +1,6 @@
 <!-- .slide: data-background="#145A32" -->
 
-## Introduction to AMBA
-## APB, AHB and AXI
+## AMBA APB, AHB and AXI
 
 [rodrigomelo9.github.io/digital-design](https://rodrigomelo9.github.io/digital-design/)
 

@@ -1,7 +1,7 @@
 <!-- .slide: data-background="#145A32" -->
 
 ## Overview of low-speed serial protocols in a SoC
-## UART, I2C, SPI and CAN
+### UART, I2C, SPI and CAN
 
 [rodrigomelo9.github.io/digital-design](https://rodrigomelo9.github.io/digital-design/)
 

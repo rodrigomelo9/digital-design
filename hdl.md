@@ -1,6 +1,6 @@
 <!-- .slide: data-background="#145A32" -->
 
-# HDL Introduction
+## HDL Introduction
 
 [rodrigomelo9.github.io/digital-design](https://rodrigomelo9.github.io/digital-design/)
 
