@@ -1,6 +1,6 @@
 <!-- .slide: data-background="#145A32" -->
 
-## Overview of the low-speed communication protocols in a SoC
+## Overview of low-speed serial protocols in a SoC
 ## UART, I2C, SPI and CAN
 
 [rodrigomelo9.github.io/digital-design](https://rodrigomelo9.github.io/digital-design/)
@@ -14,7 +14,7 @@ Rodrigo Alejandro Melo
 ### UART
 #### Universal Asynchronous Receiver/ Transmitter
 
-![UART](images/commprot/uart.png)
+![UART](images/serial/uart.png)
 
 > The flow control signals RTS (Request to Send) and CTS (Clear to Send) are optional
 <!-- .element: style="font-size: 0.4em !important;" -->
