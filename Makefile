@@ -1,16 +1,15 @@
 #!/usr/bin/make
 
-BUILD=build
+ODIR=_build
+OPTS=--theme moon --static $(ODIR)
 
-.PHONY: html clean
+vpath %.html $(ODIR)
 
-html: \
-  $(BUILD)/amba.html \
-  $(BUILD)/serial.html \
-  $(BUILD)/hdl.html
+%.html: %.md index.md
+	reveal-md $(OPTS) $<
+	reveal-md $(OPTS) index.md
 
-$(BUILD)/%.html: %.md
-	reveal-md --theme moon --static $(BUILD) $<
+html: amba.html hdl.html serial.html
 
 clean:
-	rm -fr $(BUILD)
+	rm -fr $(ODIR)
