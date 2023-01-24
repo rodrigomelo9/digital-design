@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reset.css" />
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/moon.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/base16/zenburn.css" />
+
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: data-background="#145A32" -->
+
+## Overview of low-speed serial protocols in a SoC
+### UART, I2C, SPI and CAN
+
+[rodrigomelo9.github.io/digital-design](https://rodrigomelo9.github.io/digital-design/)
+
+Rodrigo Alejandro Melo
+
+[Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)
+</script></section><section ><section data-markdown><script type="text/template">
+### UART
+#### Universal Asynchronous Receiver/ Transmitter
+
+![UART](images/serial/uart.png)
+
+> The flow control signals RTS (Request to Send) and CTS (Clear to Send) are optional
+<!-- .element: style="font-size: 0.4em !important;" -->
+</script></section><section data-markdown><script type="text/template">
+### Description
+</script></section><section data-markdown><script type="text/template">
+### Waveforms
+</script></section></section><section ><section data-markdown><script type="text/template">
+### I2C
+#### Inter-Integrated Circuit
+</script></section><section data-markdown><script type="text/template">
+### Description
+</script></section><section data-markdown><script type="text/template">
+### Waveforms
+</script></section></section><section ><section data-markdown><script type="text/template">
+### SPI
+#### Serial Peripheral Interface
+</script></section><section data-markdown><script type="text/template">
+### Description
+</script></section><section data-markdown><script type="text/template">
+### Waveforms
+</script></section></section><section ><section data-markdown><script type="text/template">
+### CAN
+#### Controller Area Network
+</script></section><section data-markdown><script type="text/template">
+### Description
+</script></section><section data-markdown><script type="text/template">
+### Waveforms
+</script></section></section><section  data-markdown><script type="text/template"><!-- ###################################################################### -->
+# Questions?
+<!-- .slide: data-background="#1F618D" -->
+<!-- ###################################################################### -->
+
+|   |   |
+|---|---|
+| ![GitHub icon](images/icons/github.png)     | [rodrigomelo9](https://github.com/rodrigomelo9)                          |
+| ![Twitter icon](images/icons/twitter.png)   | [rodrigomelo9ok](https://twitter.com/rodrigomelo9ok)                     |
+| ![LinkedIn icon](images/icons/linkedin.png) | [rodrigoalejandromelo](https://www.linkedin.com/in/rodrigoalejandromelo) |
+|   |   |
+</script></section></div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        slideNumber: true,
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
