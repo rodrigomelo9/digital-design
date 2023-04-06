@@ -9,7 +9,7 @@ vpath %.html $(ODIR)
 	reveal-md $(OPTS) $<
 	reveal-md $(OPTS) index.md
 
-html: amba.html hdl.html serial.html
+html: hdl.html serial.html
 
 clean:
 	rm -fr $(ODIR)
